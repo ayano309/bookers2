@@ -1,19 +1,84 @@
-<h1 class=index-title>Users</h1>
-    <table>
-      <thead>
-        <tr>
-          <th>image</th>
-          <th>name</th>
-          <th colspan="3"></th>
-        </tr>
-      </thead>
+<div class = "container">
+ <div class = "row">
+  <div class = "col-md-3">
+    <h1 class=index-title>Users</h1>
+    <table class="table">
       <tbody>
-        <% @users.each do |user| %>
-          <tr>
-            <td><%= image_tag user.get_profile_image(100,100) %></td>
-            <td><%= user.name %></td>
-            <td><%= link_to "Show", user_path(user) %></td>
-          </tr>
-        <% end %>
-       </tbody>
+        <tr>
+        <th><%= image_tag @user.get_profile_image(100,100) %></th>
+        </tr>
+    
+        <tr>
+        <th>neme : <%= @user.name %></th>
+        </tr>
+  
+        <tr>
+        <th>introduction <%= @user.introduction %></th>
+        </tr>
+  
+        <tr>
+        <th>
+        <div class="row">
+          <%= link_to edit_user_path(@user), class: 'btn btn-outline-secondary btn-block' do %>
+              <i class="fas fa-user-cog fa-w-20"></i>
+          <% end %>
+        </div>
+        </th>
+        </tr>
+      </tbody>
     </table>
+
+
+
+    <% if @book.errors.any? %>
+        <%= @book.errors.count %>件のエラーが発生しました
+        <% @book.errors.full_messages.each do |message| %>
+        <%= message %>
+        <% end %>
+    <% end %>
+
+
+
+
+    <h1>New book</h1>
+    <%= form_with model: @book, local:true do |f| %>
+    
+      <h4>title</h4>
+      <%= f.text_field :title %>
+    
+      <h4>Opinion</h4>
+      <%= f.text_area :body %><br>
+    
+      <%= f.submit 'Create Book' %>
+    <% end %>
+
+  </div>
+
+<!--メイン-->
+
+  <div class="col-md-8 offset-md-1">
+    <table class="table">
+  
+      <h1>Users</h1>
+       <thead>
+        <tr>
+            <th>image</th>
+            <th>name</th>
+            <th colspan="3"></th>
+        </tr>
+       </thead>
+  
+    <% @users.each do |user| %>
+      <tbody>
+         <tr>
+           <th><%= image_tag user.get_profile_image(100,100) %></th>
+           <th> <%= user.name %></th>
+           <th><%= link_to "Show", user_path(user) %></th>
+         </tr>
+      </tbody>
+    <% end %>
+    </table>
+  </div>
+  </div>
+</div>
+  
