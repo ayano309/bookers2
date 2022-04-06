@@ -1,12 +1,42 @@
+<div class = "container">
+ <div class = "row">
+ 
 
-<p><strong>Title: </strong>
-  <%= @book.title %></p>
+    <%= render 'commons/common', book: @newbook, user: @user %>
 
-<p><strong>Body: </strong>
-  <%= @book.body %></p>
+      <div class = "col-md-8 offset-md-1">
+       <h1>Book detail</h1>
 
-<% if user_signed_in? && current_user.has_posted?(@book)%>
-  <%= link_to 'Edit', edit_book_path(@book) %>
-<%end%>
-|
-<%= link_to 'Back', books_path %>
+
+        <table class="table">
+          <tbody>
+            <tr>
+             <td>
+               <%= link_to user_path(@user) do %>
+                 <%= image_tag(@user.get_profile_image(100,100))%><br>
+                  <%= @user.name%>
+                <% end %>
+              </td>
+             <td><%= link_to @book.title, book_path(@book) %></td>
+             <td><%= @book.body %></td>
+             <% if @user.id == current_user.id %>
+                <td>
+                  <%= link_to "Edit", edit_book_path(@book), class: "btn btn-sm btn-success" %>
+                </td>
+                <td>
+                  <%= link_to "Destroy", book_path(@book), class: "btn btn-sm btn-danger", method: :delete, "data-confirm" => "本当に消しますか？" %>
+                </td>
+              <% end %>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+ </div>
+
+
+<!--<% if user_signed_in? && current_user.has_posted?(@book)%>-->
+<!--  <%= link_to 'Edit', edit_book_path(@book) %>-->
+<!--<%end%>-->
+<!--|-->
+<!--<%= link_to 'Back', books_path %>-->

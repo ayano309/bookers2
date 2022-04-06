@@ -22,7 +22,8 @@
         <ul class="navbar-nav ml-auto ">
           <% if user_signed_in? %>
             <li class="">
-              <%= link_to "Home" ,user_path(current_user.id),class: "nav-link text-light65" %>
+              <%= link_to "Home" ,user_path(current_user.id),class: "nav-link text-light" %>
+      
             </li>
             <li class="">
               <%= link_to "Users",  users_path,class: "nav-link text-light" %>
@@ -52,8 +53,15 @@
       </div>
     </nav>
     
-    <p class="notice"><%= notice %></p>
-    <p class="alert"><%= alert %></p>
+    <% if flash.present?%>
+      <div class="flash">
+        <% flash.each do |key, value| %>
+          <div class="<%= key %>">
+            <%= value %>
+          </div>
+        <% end %>
+      </div>
+    <% end %>
     <%= yield %>
   </body>
   <fotter>
