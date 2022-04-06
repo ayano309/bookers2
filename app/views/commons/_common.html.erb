@@ -1,4 +1,18 @@
+<div class = "container">
+  <% if book.errors.any? %>
+      <h3><%= @book.errors.count %>errors prohibited this book from being saved:</h3>
+      <% book.errors.full_messages.each do |message| %>
+        <ul>
+          <li><%= message %></li>
+        </ul>
+      <% end %>
+  <% end %>
+     
 
+
+
+
+ <div class = "row">
   <div class = "col-md-3">
     <h1 class=index-title>User info</h1>
     <table class="table">
@@ -28,15 +42,7 @@
     </table>
 
 
-
-    <% if book.errors.any? %>
-        <%= book.errors.count %>件のエラーが発生しました
-        <% book.errors.full_messages.each do |message| %>
-        <%= message %>
-        <% end %>
-    <% end %>
-
-
+    
 
 
     <h1>New book</h1>
