@@ -1,0 +1,60 @@
+<div class = "container">
+  <% if book.errors.any? %>
+      <h3><%= @book.errors.count %>errors prohibited this book from being saved:</h3>
+      <% book.errors.full_messages.each do |message| %>
+        <ul>
+          <li><%= message %></li>
+        </ul>
+      <% end %>
+  <% end %>
+     
+
+
+
+
+ <div class = "row">
+  <div class = "col-md-3">
+    <h1 class=index-title>User info</h1>
+    <table class="table">
+      <tbody>
+        <tr>
+        <th><%= image_tag user.get_profile_image(100,100) %></th>
+        </tr>
+    
+        <tr>
+        <th>neme : <%= user.name %></th>
+        </tr>
+  
+        <tr>
+        <th>introduction <%= user.introduction %></th>
+        </tr>
+  
+        <tr>
+        <th>
+        <div class="row">
+          <%= link_to edit_user_path(user), class: 'btn btn-outline-secondary btn-block' do %>
+              <i class="fas fa-user-cog fa-w-20"></i>
+          <% end %>
+        </div>
+        </th>
+        </tr>
+      </tbody>
+    </table>
+
+
+    
+
+
+    <h1>New book</h1>
+    <%= form_with model: book, local:true do |f| %>
+    
+      <h4>title</h4>
+      <%= f.text_field :title %>
+    
+      <h4>Opinion</h4>
+      <%= f.text_area :body %><br>
+    
+      <%= f.submit 'Create Book' %>
+    <% end %>
+
+  </div>
