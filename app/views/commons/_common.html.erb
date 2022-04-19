@@ -14,48 +14,46 @@
 
  <div class = "row">
   <div class = "col-md-3">
-    <h1 class=index-title>User info</h1>
+    <h2 class=index-title>User info</h2>
+    <%= image_tag user.get_profile_image(100,100) %>
     <table class="table">
       <tbody>
         <tr>
-        <th><%= image_tag user.get_profile_image(100,100) %></th>
+          
         </tr>
     
         <tr>
-        <th>neme : <%= user.name %></th>
+        <th>neme</th>
+        <th><%= user.name %></th>
         </tr>
   
         <tr>
-        <th>introduction <%= user.introduction %></th>
-        </tr>
-  
-        <tr>
-        <th>
-        <div class="row">
-          
-          <%= link_to edit_user_path(user), class: 'btn btn-outline-secondary btn-block' do %>
-            <i class="fas fa-user-cog fa-w-20"></i>
-          <% end %>
-        </div>
-        </th>
+        <th>introduction</th>
+        <th><%= user.introduction %></th>
         </tr>
       </tbody>
     </table>
-
-
     
+    <div class="row">
+      <%= link_to edit_user_path(user), class: 'btn btn-outline-secondary btn-block' do %>
+        <i class="fas fa-user-cog fa-w-20"></i>
+      <% end %>
+     </div>
 
-
-    <h1>New book</h1>
+    <h2 class="mt-3">New book</h2>
     <%= form_with model: book, local:true do |f| %>
-    
-      <h4>title</h4>
-      <%= f.text_field :title %>
-    
-      <h4>Opinion</h4>
-      <%= f.text_area :body %><br>
-    
-      <%= f.submit 'Create Book' %>
+      <div class="form-group">
+        <%= f.label :title %>
+        <%= f.text_field :title ,class: "form-control"  %>
+      </div>
+      <div class="form-group">
+        <%= f.label :opinion %>
+        <%= f.text_area :body ,class: "form-control" %><br>
+      </div>
+      <div class="form-group">
+        <%= f.submit 'Create Book' , class: "btn btn-success"%>
+      </div>
     <% end %>
 
   </div>
+ 
